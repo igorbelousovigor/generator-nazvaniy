@@ -35,7 +35,7 @@ function renderReel(reel, words, index) {
 
 async function loadWords() {
   try {
-    const response = await fetch("words.json?v=14", { cache: "no-store" });
+    const response = await fetch("words.json?v=15", { cache: "no-store" });
     if (!response.ok) throw new Error("Не удалось загрузить список слов");
     const data = await response.json();
     if (!Array.isArray(data.nouns) || !data.nouns.length || !Array.isArray(data.additions) || !data.additions.length) {
