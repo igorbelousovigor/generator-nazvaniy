@@ -1,6 +1,5 @@
-// Здесь можно менять оба списка слов.
-const nouns = ["река", "история", "путь"];
-const additions = ["времени", "истории", "памяти"];
+let nouns = ["вектор", "вершина", "волна"];
+let additions = ["будущего", "вдохновения", "воды"];
 
 const button = document.querySelector("#generate");
 const result = document.querySelector("#result");
@@ -27,9 +26,31 @@ function renderReel(reel, words, index) {
   reel.querySelector(".after").textContent = words[(index + 1) % words.length];
   const active = reel.querySelector(".active-word");
   active.textContent = words[index];
-  active.classList.remove("drop");
+  active.classList.remove("drop", "is-long", "is-very-long");
+  if (words[index].length >= 14) active.classList.add("is-very-long");
+  else if (words[index].length >= 10) active.classList.add("is-long");
   void active.offsetWidth;
   active.classList.add("drop");
+}
+
+async function loadWords() {
+  try {
+    const response = await fetch("words.json?v=13", { cache: "no-store" });
+    if (!response.ok) throw new Error("Не удалось загрузить список слов");
+    const data = await response.json();
+    if (!Array.isArray(data.nouns) || !data.nouns.length || !Array.isArray(data.additions) || !data.additions.length) {
+      throw new Error("Некорректный список слов");
+    }
+    nouns = data.nouns;
+    additions = data.additions;
+    nounIndex = 0;
+    additionIndex = 0;
+    renderReel(reels.noun, nouns, nounIndex);
+    renderReel(reels.addition, additions, additionIndex);
+    updateResult();
+  } catch (error) {
+    console.warn(error);
+  }
 }
 
 function updateResult() {
@@ -108,3 +129,5 @@ window.addEventListener("keydown", event => {
     generate();
   }
 });
+
+loadWords();
