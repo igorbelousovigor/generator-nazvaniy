@@ -12,7 +12,12 @@ body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink);
 button, a { font: inherit; }
 main { min-height: 100svh; display: flex; flex-direction: column; }
 
-.hero { flex: 1; display: flex; flex-direction: column; padding: 34px 28px 28px; }
+.author-credit { display: flex; justify-content: flex-end; padding: 18px 28px 0; font-size: 9px; line-height: 1; letter-spacing: .08em; text-transform: lowercase; }
+.author-credit a { color: var(--ink); text-underline-offset: 3px; }
+.author-credit a:hover { text-decoration-thickness: 2px; }
+.author-credit a:focus-visible { outline: 3px solid #5f45ff; outline-offset: 3px; }
+
+.hero { flex: 1; display: flex; flex-direction: column; padding: 14px 28px 28px; }
 .hero-copy { display: grid; grid-template-columns: 1fr 2fr; align-items: start; margin-bottom: 32px; }
 h1 { grid-column: 2; margin: 0; max-width: 980px; font-size: clamp(52px, 5.7vw, 96px); font-weight: 700; line-height: .82; letter-spacing: -.08em; text-transform: uppercase; }
 
@@ -50,13 +55,11 @@ h1 { grid-column: 2; margin: 0; max-width: 980px; font-size: clamp(52px, 5.7vw, 
 .generate-button:disabled { cursor: wait; opacity: .82; }
 .button-arrow { font-size: 1.55em; font-weight: 300; }
 
-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: 8px 28px 0; padding: 12px 0 16px; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: rgba(20, 20, 18, .55); }
-.telegram-link { color: var(--ink); text-decoration: none; transition: opacity 160ms; }
-.telegram-link:hover { opacity: .55; }
-.telegram-link:focus-visible { outline: 3px solid #5f45ff; outline-offset: 3px; }
+footer { display: flex; align-items: center; gap: 20px; margin: 8px 28px 0; padding: 12px 0 16px; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: rgba(20, 20, 18, .55); }
 
 @media (max-width: 760px) {
-  .hero { padding: 22px 16px 18px; }
+  .author-credit { padding: 14px 16px 0; }
+  .hero { padding: 16px 16px 18px; }
   .hero-copy { display: block; margin-bottom: 24px; }
   h1 { font-size: clamp(42px, 13vw, 72px); }
   .reels { grid-template-columns: 1fr; }
@@ -67,8 +70,7 @@ footer { display: flex; justify-content: space-between; align-items: center; gap
   .result { min-height: 76px; }
   .copy-button { min-width: 78px; }
   .generate-button { min-height: 86px; }
-  footer { justify-content: flex-end; margin: 4px 16px 0; }
-  footer > span { display: none; }
+  footer { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
