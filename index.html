@@ -12,7 +12,7 @@
     <main>
       <section class="hero" id="generator">
         <div class="hero-copy">
-          <h1>Генератор названия<br />проекта<br />благоустройства</h1>
+          <h1>Как назвать проект<br />общественного<br />пространства</h1>
         </div>
 
         <div class="reels" aria-label="Сгенерированное название">
@@ -38,10 +38,16 @@
         </div>
 
         <div class="action-row">
-          <p class="result" aria-live="polite">
-            <span>готовое название</span>
-            <strong id="result">река времени</strong>
-          </p>
+          <div class="result-wrap">
+            <p class="result" aria-live="polite">
+              <span>готовое название</span>
+              <strong id="result">река времени</strong>
+            </p>
+            <button class="copy-button" id="copy" type="button" aria-label="Копировать название" title="Копировать название">
+              <span class="copy-icon" aria-hidden="true"></span>
+              <span class="copy-status">копировать</span>
+            </button>
+          </div>
           <button class="generate-button" id="generate" type="button">
             <span>сгенерировать название</span>
             <span class="button-arrow" aria-hidden="true">↗</span>
