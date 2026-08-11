@@ -51,10 +51,9 @@ h1 { grid-column: 2; margin: 0; max-width: 980px; font-size: clamp(52px, 5.7vw, 
 .button-arrow { font-size: 1.55em; font-weight: 300; }
 
 footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: 8px 28px 0; padding: 12px 0 16px; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: rgba(20, 20, 18, .55); }
-.telegram-link { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); text-decoration: none; transition: opacity 160ms; }
+.telegram-link { color: var(--ink); text-decoration: none; transition: opacity 160ms; }
 .telegram-link:hover { opacity: .55; }
 .telegram-link:focus-visible { outline: 3px solid #5f45ff; outline-offset: 3px; }
-.telegram-icon { width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--paper); display: inline-flex; align-items: center; justify-content: center; padding: 0 1px 1px 0; font-size: 11px; transform: rotate(-28deg); }
 
 @media (max-width: 760px) {
   .hero { padding: 22px 16px 18px; }
