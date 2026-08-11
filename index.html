@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Случайные названия для вполне серьёзных проектов благоустройства." />
+    <meta name="theme-color" content="#f2f0e8" />
+    <title>Генератор названий благоустройства</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <a class="wordmark" href="#generator" aria-label="К генератору">имя места</a>
+        <p>случайные названия<br />для вполне серьёзных проектов</p>
+        <span class="edition">генератор / 01</span>
+      </header>
+
+      <section class="hero" id="generator">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Урбанистический рандомайзер</p>
+          <h1>Как назовём<br />благоустройство?</h1>
+        </div>
+
+        <div class="reels" aria-label="Сгенерированное название">
+          <section class="reel" id="noun-reel" aria-label="Существительное">
+            <div class="reel-topline"><span>01 / существительное</span><span class="reel-mark">✳</span></div>
+            <div class="reel-window" aria-live="polite" aria-atomic="true">
+              <span class="ghost-word before">путь</span>
+              <strong class="active-word">река</strong>
+              <span class="ghost-word after">история</span>
+            </div>
+            <div class="reel-line"></div>
+          </section>
+
+          <section class="reel" id="addition-reel" aria-label="Дополнение">
+            <div class="reel-topline"><span>02 / дополнение</span><span class="reel-mark">✳</span></div>
+            <div class="reel-window" aria-live="polite" aria-atomic="true">
+              <span class="ghost-word before">памяти</span>
+              <strong class="active-word">времени</strong>
+              <span class="ghost-word after">истории</span>
+            </div>
+            <div class="reel-line"></div>
+          </section>
+        </div>
+
+        <div class="action-row">
+          <p class="result" aria-live="polite">
+            <span>готовое название</span>
+            <strong id="result">река времени</strong>
+          </p>
+          <button class="generate-button" id="generate" type="button">
+            <span>сгенерировать название</span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <footer>
+        <span>Нажмите пробел, если лень тянуться к кнопке</span>
+        <span>Название не гарантирует победу в конкурсе</span>
+      </footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
