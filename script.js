@@ -35,7 +35,7 @@ function renderReel(reel, words, index) {
 
 async function loadWords() {
   try {
-    const response = await fetch("words.json?v=13", { cache: "no-store" });
+    const response = await fetch("words.json?v=14", { cache: "no-store" });
     if (!response.ok) throw new Error("Не удалось загрузить список слов");
     const data = await response.json();
     if (!Array.isArray(data.nouns) || !data.nouns.length || !Array.isArray(data.additions) || !data.additions.length) {
@@ -57,13 +57,13 @@ function updateResult() {
   result.textContent = `${nouns[nounIndex]} ${additions[additionIndex]}`;
 }
 
-function spinReel(reel, words, duration, getIndex, setIndex) {
+function spinReel(reel, words, duration, targetIndex, getIndex, setIndex) {
   const start = performance.now();
   reel.classList.add("is-spinning");
 
   function step() {
     const progress = Math.min((performance.now() - start) / duration, 1);
-    const next = pickIndex(words.length, getIndex());
+    const next = progress >= 1 ? targetIndex : pickIndex(words.length, getIndex());
     setIndex(next);
     renderReel(reel, words, next);
     updateResult();
@@ -86,8 +86,18 @@ function generate() {
   button.disabled = true;
   button.querySelector("span").textContent = "ищем название";
 
-  spinReel(reels.noun, nouns, 1050, () => nounIndex, value => { nounIndex = value; });
-  spinReel(reels.addition, additions, 1320, () => additionIndex, value => { additionIndex = value; });
+  const previousNounIndex = nounIndex;
+  const previousAdditionIndex = additionIndex;
+  let targetNounIndex;
+  let targetAdditionIndex;
+
+  do {
+    targetNounIndex = Math.floor(Math.random() * nouns.length);
+    targetAdditionIndex = Math.floor(Math.random() * additions.length);
+  } while (targetNounIndex === previousNounIndex && targetAdditionIndex === previousAdditionIndex);
+
+  spinReel(reels.noun, nouns, 1050, targetNounIndex, () => nounIndex, value => { nounIndex = value; });
+  spinReel(reels.addition, additions, 1320, targetAdditionIndex, () => additionIndex, value => { additionIndex = value; });
 
   timers.push(setTimeout(() => {
     spinning = false;
