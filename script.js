@@ -4,6 +4,7 @@ const additions = ["времени", "истории", "памяти"];
 
 const button = document.querySelector("#generate");
 const result = document.querySelector("#result");
+const copyButton = document.querySelector("#copy");
 const reels = {
   noun: document.querySelector("#noun-reel"),
   addition: document.querySelector("#addition-reel"),
@@ -75,6 +76,32 @@ function generate() {
 }
 
 button.addEventListener("click", generate);
+
+copyButton.addEventListener("click", async () => {
+  const name = result.textContent.trim();
+  try {
+    await navigator.clipboard.writeText(name);
+  } catch {
+    const helper = document.createElement("textarea");
+    helper.value = name;
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+    document.execCommand("copy");
+    helper.remove();
+  }
+
+  copyButton.classList.add("is-copied");
+  copyButton.querySelector(".copy-status").textContent = "скопировано";
+  copyButton.setAttribute("aria-label", "Название скопировано");
+  setTimeout(() => {
+    copyButton.classList.remove("is-copied");
+    copyButton.querySelector(".copy-status").textContent = "копировать";
+    copyButton.setAttribute("aria-label", "Копировать название");
+  }, 1400);
+});
+
 window.addEventListener("keydown", event => {
   if (event.code === "Space" && !event.repeat && event.target === document.body) {
     event.preventDefault();
