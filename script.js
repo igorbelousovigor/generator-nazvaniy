@@ -5,6 +5,8 @@ const button = document.querySelector("#generate");
 const result = document.querySelector("#result");
 const copyButton = document.querySelector("#copy");
 const telegramLink = document.querySelector("#telegram-link");
+const ratingButtons = [...document.querySelectorAll(".rating-button")];
+const ratingStatus = document.querySelector("#rating-status");
 const metrikaCounterId = 111522186;
 
 function trackGoal(goal, params = {}) {
@@ -20,7 +22,24 @@ const reels = {
 let nounIndex = 0;
 let additionIndex = 0;
 let spinning = false;
+let ratingSubmitted = false;
 let timers = [];
+
+function setRatingDisabled(disabled) {
+  ratingButtons.forEach(ratingButton => {
+    ratingButton.disabled = disabled;
+  });
+}
+
+function resetRating() {
+  ratingSubmitted = false;
+  ratingStatus.textContent = "";
+  ratingButtons.forEach(ratingButton => {
+    ratingButton.classList.remove("is-selected");
+    ratingButton.disabled = false;
+    ratingButton.removeAttribute("aria-pressed");
+  });
+}
 
 function pickIndex(length, previous) {
   if (length < 2) return 0;
@@ -91,6 +110,8 @@ function spinReel(reel, words, duration, targetIndex, getIndex, setIndex) {
 function generate(source = "button") {
   if (spinning) return;
   trackGoal("generate_name", { source });
+  resetRating();
+  setRatingDisabled(true);
   timers.forEach(clearTimeout);
   timers = [];
   spinning = true;
@@ -113,6 +134,7 @@ function generate(source = "button") {
   timers.push(setTimeout(() => {
     spinning = false;
     button.disabled = false;
+    setRatingDisabled(false);
     button.querySelector("span").textContent = "сгенерировать название";
   }, 1580));
 }
@@ -143,6 +165,32 @@ copyButton.addEventListener("click", async () => {
     copyButton.querySelector(".copy-status").textContent = "копировать";
     copyButton.setAttribute("aria-label", "Копировать название");
   }, 1400);
+});
+
+ratingButtons.forEach(ratingButton => {
+  ratingButton.addEventListener("click", () => {
+    if (ratingSubmitted || spinning) return;
+
+    ratingSubmitted = true;
+    const vote = ratingButton.dataset.vote;
+    const name = result.textContent.trim();
+    const ratingData = {
+      vote,
+      name,
+      noun: nouns[nounIndex],
+      addition: additions[additionIndex],
+    };
+
+    ratingButton.classList.add("is-selected");
+    ratingButton.setAttribute("aria-pressed", "true");
+    setRatingDisabled(true);
+    ratingStatus.textContent = "спасибо";
+
+    trackGoal("rate_name", ratingData);
+    if (typeof window.ym === "function") {
+      window.ym(metrikaCounterId, "params", { name_rating: ratingData });
+    }
+  });
 });
 
 telegramLink.addEventListener("click", () => {
