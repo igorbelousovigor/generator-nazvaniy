@@ -14,7 +14,7 @@
     <meta name="twitter:description" content="Когда концепция уже есть, а название ещё не придумалось." />
     <title>Генератор названий общественных пространств</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1" />
-    <link rel="stylesheet" href="styles.css?v=16" />
+    <link rel="stylesheet" href="styles.css?v=18" />
     <!-- Yandex.Metrika counter -->
     <script>
       (function(m,e,t,r,i,k,a){
@@ -70,15 +70,25 @@
         </div>
 
         <div class="action-row">
-          <div class="result-wrap">
-            <p class="result" aria-live="polite">
-              <span>готовое название</span>
-              <strong id="result">связь времён</strong>
-            </p>
-            <button class="copy-button" id="copy" type="button" aria-label="Копировать название" title="Копировать название">
-              <span class="copy-icon" aria-hidden="true"></span>
-              <span class="copy-status">копировать</span>
-            </button>
+          <div class="result-side">
+            <div class="result-wrap">
+              <p class="result" aria-live="polite">
+                <span>готовое название</span>
+                <strong id="result">связь времён</strong>
+              </p>
+              <button class="copy-button" id="copy" type="button" aria-label="Копировать название" title="Копировать название">
+                <span class="copy-icon" aria-hidden="true"></span>
+                <span class="copy-status">копировать</span>
+              </button>
+            </div>
+            <div class="rating" aria-label="Оценить название">
+              <span class="rating-question">как вам название?</span>
+              <div class="rating-buttons">
+                <button class="rating-button rating-like" type="button" data-vote="like">нравится</button>
+                <button class="rating-button rating-dislike" type="button" data-vote="dislike">не нравится</button>
+              </div>
+              <span class="rating-status" id="rating-status" aria-live="polite"></span>
+            </div>
           </div>
           <div class="generate-wrap">
             <button class="generate-button" id="generate" type="button">
@@ -96,6 +106,6 @@
         <span>Нажмите пробел, если лень тянуться к кнопке</span>
       </footer>
     </main>
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=18"></script>
   </body>
 </html>
