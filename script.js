@@ -4,6 +4,14 @@ let additions = ["времён"];
 const button = document.querySelector("#generate");
 const result = document.querySelector("#result");
 const copyButton = document.querySelector("#copy");
+const telegramLink = document.querySelector("#telegram-link");
+const metrikaCounterId = 111522186;
+
+function trackGoal(goal, params = {}) {
+  if (typeof window.ym === "function") {
+    window.ym(metrikaCounterId, "reachGoal", goal, params);
+  }
+}
 const reels = {
   noun: document.querySelector("#noun-reel"),
   addition: document.querySelector("#addition-reel"),
@@ -80,8 +88,9 @@ function spinReel(reel, words, duration, targetIndex, getIndex, setIndex) {
   step();
 }
 
-function generate() {
+function generate(source = "button") {
   if (spinning) return;
+  trackGoal("generate_name", { source });
   timers.forEach(clearTimeout);
   timers = [];
   spinning = true;
@@ -108,7 +117,7 @@ function generate() {
   }, 1580));
 }
 
-button.addEventListener("click", generate);
+button.addEventListener("click", () => generate("button"));
 
 copyButton.addEventListener("click", async () => {
   const name = result.textContent.trim();
@@ -125,6 +134,7 @@ copyButton.addEventListener("click", async () => {
     helper.remove();
   }
 
+  trackGoal("copy_name", { name });
   copyButton.classList.add("is-copied");
   copyButton.querySelector(".copy-status").textContent = "скопировано";
   copyButton.setAttribute("aria-label", "Название скопировано");
@@ -135,10 +145,14 @@ copyButton.addEventListener("click", async () => {
   }, 1400);
 });
 
+telegramLink.addEventListener("click", () => {
+  trackGoal("telegram_click");
+});
+
 window.addEventListener("keydown", event => {
   if (event.code === "Space" && !event.repeat && event.target === document.body) {
     event.preventDefault();
-    generate();
+    generate("space");
   }
 });
 
