@@ -7,14 +7,10 @@
     <meta name="theme-color" content="#ffffff" />
     <title>Генератор названий благоустройства</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1" />
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=16" />
   </head>
   <body>
     <main>
-      <div class="author-credit">
-        тгк автора:&nbsp;<a href="https://t.me/urbanbip" target="_blank" rel="noopener noreferrer">бип (игорь белоусов)</a>
-      </div>
-
       <section class="hero" id="generator">
         <div class="hero-copy">
           <h1>Как назвать проект<br />общественного<br />пространства</h1>
@@ -24,9 +20,9 @@
           <section class="reel" id="noun-reel" aria-label="Существительное">
             <div class="reel-topline"><span class="reel-mark">✳</span></div>
             <div class="reel-window" aria-live="polite" aria-atomic="true">
-              <span class="ghost-word before">ядро</span>
-              <strong class="active-word">вектор</strong>
-              <span class="ghost-word after">вершина</span>
+              <span class="ghost-word before">колыбель</span>
+              <strong class="active-word">связь</strong>
+              <span class="ghost-word after">горизонт</span>
             </div>
             <div class="reel-line"></div>
           </section>
@@ -34,9 +30,9 @@
           <section class="reel" id="addition-reel" aria-label="Дополнение">
             <div class="reel-topline"><span class="reel-mark">✳</span></div>
             <div class="reel-window" aria-live="polite" aria-atomic="true">
-              <span class="ghost-word before">юности</span>
-              <strong class="active-word">будущего</strong>
-              <span class="ghost-word after">вдохновения</span>
+              <span class="ghost-word before">отдыха</span>
+              <strong class="active-word">времён</strong>
+              <span class="ghost-word after">дружбы</span>
             </div>
             <div class="reel-line"></div>
           </section>
@@ -46,17 +42,22 @@
           <div class="result-wrap">
             <p class="result" aria-live="polite">
               <span>готовое название</span>
-              <strong id="result">вектор будущего</strong>
+              <strong id="result">связь времён</strong>
             </p>
             <button class="copy-button" id="copy" type="button" aria-label="Копировать название" title="Копировать название">
               <span class="copy-icon" aria-hidden="true"></span>
               <span class="copy-status">копировать</span>
             </button>
           </div>
-          <button class="generate-button" id="generate" type="button">
-            <span>сгенерировать название</span>
-            <span class="button-arrow" aria-hidden="true">↗</span>
-          </button>
+          <div class="generate-wrap">
+            <button class="generate-button" id="generate" type="button">
+              <span>сгенерировать название</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+            <div class="author-credit">
+              тгк автора:&nbsp;<a href="https://t.me/urbanbip" target="_blank" rel="noopener noreferrer">бип (игорь белоусов)</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -64,6 +65,6 @@
         <span>Нажмите пробел, если лень тянуться к кнопке</span>
       </footer>
     </main>
-    <script src="script.js?v=15"></script>
+    <script src="script.js?v=16"></script>
   </body>
 </html>
