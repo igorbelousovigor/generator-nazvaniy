@@ -1,5 +1,5 @@
-let nouns = ["вектор", "вершина", "волна"];
-let additions = ["будущего", "вдохновения", "воды"];
+let nouns = ["связь"];
+let additions = ["времён"];
 
 const button = document.querySelector("#generate");
 const result = document.querySelector("#result");
@@ -35,7 +35,7 @@ function renderReel(reel, words, index) {
 
 async function loadWords() {
   try {
-    const response = await fetch("words.json?v=15", { cache: "no-store" });
+    const response = await fetch("words.json?v=16", { cache: "no-store" });
     if (!response.ok) throw new Error("Не удалось загрузить список слов");
     const data = await response.json();
     if (!Array.isArray(data.nouns) || !data.nouns.length || !Array.isArray(data.additions) || !data.additions.length) {
@@ -43,8 +43,10 @@ async function loadWords() {
     }
     nouns = data.nouns;
     additions = data.additions;
-    nounIndex = 0;
-    additionIndex = 0;
+    nounIndex = nouns.indexOf("связь");
+    additionIndex = additions.indexOf("времён");
+    if (nounIndex < 0) nounIndex = 0;
+    if (additionIndex < 0) additionIndex = 0;
     renderReel(reels.noun, nouns, nounIndex);
     renderReel(reels.addition, additions, additionIndex);
     updateResult();
