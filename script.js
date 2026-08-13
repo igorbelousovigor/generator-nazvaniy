@@ -175,10 +175,13 @@ ratingButtons.forEach(ratingButton => {
     const vote = ratingButton.dataset.vote;
     const name = result.textContent.trim();
     const ratingData = {
-      vote,
-      name,
-      noun: nouns[nounIndex],
-      addition: additions[additionIndex],
+      rating: {
+        [vote]: {
+          names: {
+            [name]: 1,
+          },
+        },
+      },
     };
 
     ratingButton.classList.add("is-selected");
